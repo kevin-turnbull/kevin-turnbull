@@ -1,4 +1,6 @@
 ---
+import WorkListItem from "./WorkListItem.astro";
+
 interface Props {
   items: {
     slug: string;
@@ -14,21 +16,7 @@ const { items } = Astro.props;
 ---
 
 <ul class="work-list">
-  {
-    items.map((item) => (
-      <li class="work-item scroll-reveal">
-        <a href={`/work/${item.slug}`}>
-          <div class="meta">
-            <span>{item.organization}</span>
-            <span>{item.timeframe}</span>
-            <span>{item.role}</span>
-          </div>
-          <h2>{item.title}</h2>
-          <p class="muted">{item.summary}</p>
-        </a>
-      </li>
-    ))
-  }
+  {items.map((item) => <WorkListItem {...item} />)}
 </ul>
 
 <script>

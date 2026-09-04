@@ -232,10 +232,52 @@
   border-top: 1px solid var(--color-line);
 }
 
+.nav-mobile {
+  display: none;
+  position: relative;
+}
+
+.nav-mobile-toggle {
+  list-style: none;
+  cursor: pointer;
+  min-height: 2.5rem;
+  padding-inline: 1rem;
+}
+
+.nav-mobile-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.nav-list-mobile {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.5rem);
+  min-width: 12rem;
+  flex-direction: column;
+  gap: 0;
+  padding: var(--space-2);
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 12px 30px color-mix(in oklab, var(--color-ink) 12%, transparent);
+}
+
+.nav-list-mobile a {
+  display: block;
+  padding: 0.7rem 0.8rem;
+}
+
 @media (max-width: 720px) {
   .nav-inner {
-    align-items: flex-start;
-    flex-direction: column;
+    align-items: center;
     padding-block: var(--space-3);
+  }
+
+  .nav-desktop {
+    display: none;
+  }
+
+  .nav-mobile {
+    display: block;
   }
 }

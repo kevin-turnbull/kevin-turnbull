@@ -240,3 +240,16 @@ Or execute tasks T001→ sequentially on this branch.
 - Do not put cards, stats, or promo chips in the home hero (constitution).
 - Prefer content edits in `src/content/**` over hardcoding copy in components.
 - Commit after each task or logical group; keep Spec Kit artifacts in sync.
+
+## Phase 10: Convergence
+
+**Purpose**: Close remaining gaps found by `/speckit-converge` against spec, plan, constitution, and prior tasks
+
+- [x] T051 CRITICAL Replace procedural placeholder hero with real licensed/owned photography in `public/images/hero.jpg` (and update profile paths) per Constitution Design Standards + T049 (`partial`)
+- [x] T052 Provide a valid résumé PDF at `public/resume/kevin-turnbull.pdf` (or hide the About download when absent) per FR-011 / US3 (`partial`)
+- [x] T053 [P] Render optional About portrait from `profile.portraitImage` in `src/pages/about.astro` when present per US3 / plan About (`missing`)
+- [x] T054 Improve mobile primary navigation in `src/components/layout/SiteNav.astro` beyond wrap-only stacking per T041 / FR-008 / US6 (`partial`)
+- [x] T055 [P] Pass absolute Open Graph image URLs from `BaseLayout`/`seo.ts` using `Astro.site` + profile hero defaults per contracts SEO (`partial`)
+- [x] T056 [P] Extract `src/components/work/WorkListItem.astro` and wire it from `WorkList.astro` per T027 (`partial`)
+- [x] T057 Add Playwright coverage for Writing empty state (draft-all or fixture) in `tests/e2e/writing-empty.spec.ts` per FR-007 (`missing`)
+- [x] T058 Record quickstart V1–V5 validation notes in `specs/001-architect-personal-site/quickstart-results.md` per T048 (`partial`)

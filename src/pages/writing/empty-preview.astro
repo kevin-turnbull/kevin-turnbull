@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import WritingList from "../../components/writing/WritingList.astro";
+---
+
+<BaseLayout
+  title="Writing empty preview"
+  description="Fixture for empty writing state."
+  noindex={true}
+>
+  <section class="page-wrap page-section stack-lg">
+    <header class="stack-md">
+      <h1 class="section-title">Writing</h1>
+      <p class="lede">Fixture route used to validate the empty state.</p>
+    </header>
+    <WritingList items={[]} />
+  </section>
+</BaseLayout>

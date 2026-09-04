@@ -1,9 +1,11 @@
 ---
+import type { SiteProfile } from "../../lib/content";
+
 interface Props {
-  brand: string;
+  profile: SiteProfile;
 }
 
-const { brand } = Astro.props;
+const { profile } = Astro.props;
 const path = Astro.url.pathname;
 const links = [
   { href: "/work", label: "Work" },
@@ -20,8 +22,24 @@ function isCurrent(href: string) {
 
 <header class="site-header">
   <div class="nav-inner">
-    <a class="nav-brand" href="/">{brand}</a>
-    <nav aria-label="Primary">
+    <a class="nav-brand" href="/">{profile.shortName}</a>
+    <details class="nav-mobile">
+      <summary class="nav-mobile-toggle btn btn-secondary">Menu</summary>
+      <nav aria-label="Primary mobile">
+        <ul class="nav-list nav-list-mobile">
+          {
+            links.map((link) => (
+              <li>
+                <a href={link.href} aria-current={isCurrent(link.href) ? "page" : undefined}>
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </details>
+    <nav class="nav-desktop" aria-label="Primary">
       <ul class="nav-list">
         {
           links.map((link) => (

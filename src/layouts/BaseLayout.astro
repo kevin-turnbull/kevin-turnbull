@@ -15,10 +15,20 @@ interface Props {
   description?: string;
   image?: string;
   path?: string;
+  noindex?: boolean;
 }
 
 const profile = getProfile();
-const seo = buildSeo(profile, Astro.props);
+const { noindex = false } = Astro.props;
+const seo = buildSeo(
+  {
+    seoTitle: profile.seoTitle,
+    seoDescription: profile.seoDescription,
+    heroImage: profile.heroImage,
+  },
+  Astro.props,
+  Astro.site,
+);
 ---
 
 <!doctype html>
@@ -31,13 +41,14 @@ const seo = buildSeo(profile, Astro.props);
     <meta property="og:description" content={seo.description} />
     <meta property="og:type" content="website" />
     {seo.image && <meta property="og:image" content={seo.image} />}
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{seo.title}</title>
   </head>
   <body>
     <div class="site-shell">
       <SkipLink />
-      <SiteNav brand={profile.shortName} />
+      <SiteNav profile={profile} />
       <main id="main" class="site-main">
         <slot />
       </main>
