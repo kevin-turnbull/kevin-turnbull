@@ -8,6 +8,7 @@ Astro static site.
 
 ```bash
 npm install
+cp .env.example .env   # optional: wire the contact form
 npm run dev
 ```
 
@@ -20,8 +21,22 @@ npm run test:e2e
 npm run test:a11y
 ```
 
-Contact form: set `PUBLIC_FORM_ENDPOINT` in `.env` (see `.env.example`) to a
-Formspree/Getform endpoint. Without it, the form falls back to `mailto:`.
+### Contact form (`PUBLIC_FORM_ENDPOINT`)
+
+1. Create a form at [Formspree](https://formspree.io) or Getform.
+2. Copy `.env.example` → `.env`.
+3. Set `PUBLIC_FORM_ENDPOINT` to the form URL, e.g. `https://formspree.io/f/abcdxyz`.
+4. Restart `npm run dev` / rebuild.
+
+If unset, the contact form falls back to `mailto:` using the address in
+`src/content/profile/site.yaml`.
+
+### Photography
+
+Hero/portrait assets currently use Unsplash-licensed photography (see
+`public/images/ATTRIBUTION.md`). Replace `public/images/hero.jpg` and
+`public/images/portrait.jpg` with owned photos before a branded production
+launch, then update paths in `src/content/profile/site.yaml` if needed.
 
 ## Spec-driven workflow
 
@@ -32,7 +47,7 @@ Formspree/Getform endpoint. Without it, the form falls back to `mailto:`.
 | 3 | `/speckit-plan` |
 | 4 | `/speckit-tasks` |
 | 5 | `/speckit-checklist` → `/speckit-analyze` |
-| 6 | `/speckit-implement` |
+| 6 | `/speckit-implement` → `/speckit-converge` |
 
 Feature artifacts: [`specs/001-architect-personal-site/`](./specs/001-architect-personal-site/)
 

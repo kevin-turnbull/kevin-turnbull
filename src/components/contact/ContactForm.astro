@@ -9,6 +9,13 @@ const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT || formEndpoint || "";
 ---
 
 <form class="stack-md" method="POST" action={endpoint || undefined} data-contact-form>
+  {endpoint ? (
+    <p class="muted">Messages are delivered through the configured form endpoint.</p>
+  ) : (
+    <p class="muted">
+      No <code>PUBLIC_FORM_ENDPOINT</code> configured — submit opens your email client. Set the env var to enable hosted delivery.
+    </p>
+  )}
   {!endpoint && <input type="hidden" name="_gotcha" value="" tabindex="-1" aria-hidden="true" />}
   <div class="field">
     <label for="name">Name</label>
