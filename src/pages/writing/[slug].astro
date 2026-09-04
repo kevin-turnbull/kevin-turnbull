@@ -1,0 +1,35 @@
+---
+import { getCollection, render } from "astro:content";
+import ProseLayout from "../../layouts/ProseLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("writing", ({ data }) => !data.draft);
+  return posts.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<ProseLayout
+  title={entry.data.title}
+  description={entry.data.abstract}
+  eyebrow={`${entry.data.type} · ${entry.data.date.toLocaleDateString("en-US")}`}
+>
+  {
+    entry.data.externalUrl ? (
+      <p>
+        This talk is hosted externally:{" "}
+        <a href={entry.data.externalUrl} rel="noopener noreferrer" target="_blank">
+          Open talk
+        </a>
+      </p>
+    ) : (
+      <Content />
+    )
+  }
+  <p><a href="/writing">← Back to writing</a></p>
+</ProseLayout>

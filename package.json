@@ -1,0 +1,28 @@
+{
+  "name": "kevin-turnbull",
+  "type": "module",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "typecheck": "astro build",
+    "test:e2e": "playwright test tests/e2e",
+    "test:a11y": "playwright test tests/a11y"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.13",
+    "@fontsource/figtree": "^5.2.8",
+    "@fontsource/fraunces": "^5.2.8",
+    "astro": "^5.14.0",
+    "yaml": "^2.8.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@playwright/test": "^1.55.0"
+  }
+}

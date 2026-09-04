@@ -1,0 +1,44 @@
+---
+title: Platform consolidation without freezing delivery
+summary: Unified a fragmented service landscape so product teams could ship faster without losing reliability guarantees.
+organization: Confidential enterprise platform
+timeframe: 2023–2024
+role: Principal / Staff Architect
+domains:
+  - platform
+  - reliability
+  - developer-experience
+featuredRank: 1
+draft: false
+---
+
+## Problem
+
+Multiple product lines had grown independent runtimes, conflicting release trains, and duplicated operational tooling. Architecture reviews repeatedly rediscovered the same failure modes.
+
+## Constraints
+
+- No multi-quarter freeze on feature delivery
+- Existing teams kept ownership of domain logic
+- Compliance evidence had to remain continuous
+- Migration risk had to be reversible in early phases
+
+## Approach
+
+Established a thin platform spine: shared identity, observability contracts, deployment primitives, and golden paths. Domain services adapted behind stable interfaces rather than being rewritten.
+
+## Decisions
+
+- Prefer contracts and paved roads over a single monorepo mandate
+- Sequence migrations by blast radius, not by org chart preference
+- Keep a dual-run window with explicit exit criteria
+
+## Outcomes
+
+- Release cadence stabilized across teams
+- Mean time to diagnose cross-service incidents improved
+- Architecture reviews shifted from tool debates to trade-off design
+
+## Role
+
+Owned target architecture, migration sequencing, and decision records; coached team leads through adoption without centralizing all implementation.

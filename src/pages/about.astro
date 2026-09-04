@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import AboutNarrative from "../components/about/AboutNarrative.astro";
+import PhilosophyList from "../components/about/PhilosophyList.astro";
+import CareerSpine from "../components/about/CareerSpine.astro";
+import { getCareer, getPhilosophy, getProfile } from "../lib/content";
+
+const profile = getProfile();
+const philosophy = (await getPhilosophy()).map((p) => ({
+  title: p.data.title,
+  body: p.data.body,
+}));
+const career = (await getCareer()).map((c) => c.data);
+---
+
+<BaseLayout title="About" description="Background, philosophy, and career spine." path="/about">
+  <section class="page-wrap page-section stack-lg">
+    <header class="stack-md">
+      <h1 class="section-title">About</h1>
+      <AboutNarrative body="I work at the intersection of product ambition and operational reality—helping organizations design systems that stay understandable as they scale." />
+    </header>
+
+    {
+      profile.resumePdf && (
+        <p>
+          <a class="btn btn-secondary" href={profile.resumePdf}>
+            Download résumé
+          </a>
+        </p>
+      )
+    }
+
+    <div class="stack-md">
+      <h2 class="font-display" style="font-size:2rem;">Philosophy</h2>
+      <PhilosophyList items={philosophy} />
+    </div>
+
+    <div class="stack-md">
+      <h2 class="font-display" style="font-size:2rem;">Career spine</h2>
+      <CareerSpine items={career} />
+    </div>
+  </section>
+</BaseLayout>

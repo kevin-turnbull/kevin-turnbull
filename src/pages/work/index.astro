@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import WorkList from "../../components/work/WorkList.astro";
+import { getFeaturedCaseStudies } from "../../lib/content";
+
+const studies = await getFeaturedCaseStudies();
+const items = studies.map((s) => ({
+  slug: s.id,
+  title: s.data.title,
+  summary: s.data.summary,
+  organization: s.data.organization,
+  timeframe: s.data.timeframe,
+  role: s.data.role,
+}));
+---
+
+<BaseLayout
+  title="Work"
+  description="Selected architecture engagements and outcomes."
+  path="/work"
+>
+  <section class="page-wrap page-section stack-lg">
+    <header class="stack-md">
+      <h1 class="section-title">Selected work</h1>
+      <p class="lede">A curated set of engagements—problem, constraints, decisions, and outcomes.</p>
+    </header>
+    <WorkList items={items} />
+  </section>
+</BaseLayout>

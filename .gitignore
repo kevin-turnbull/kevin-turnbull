@@ -14,3 +14,7 @@ dist/
 # OS / editor
 .DS_Store
 *.log
+.vscode/
+
+test-results/
+playwright-report/

@@ -1,0 +1,43 @@
+---
+title: Event-driven order flow under peak uncertainty
+summary: Redesigned an order orchestration boundary so peak events stopped cascading into customer-visible failures.
+organization: High-growth commerce product
+timeframe: 2022–2023
+role: Senior Software Architect
+domains:
+  - events
+  - data
+  - resilience
+featuredRank: 2
+draft: false
+---
+
+## Problem
+
+Synchronous order workflows collapsed under campaign traffic. Retries amplified load, and support absorbed the customer impact.
+
+## Constraints
+
+- Payment provider contracts could not change mid-season
+- Downstream inventory systems were eventually consistent
+- Team capacity limited large rewrites
+
+## Approach
+
+Introduced an orchestration boundary with explicit state, idempotent handlers, and back-pressure. Separated customer acknowledgment from irreversible side effects.
+
+## Decisions
+
+- Accept eventual consistency for inventory confirmation with clear UX messaging
+- Make retries policy-driven and observable
+- Prefer outbox patterns over fragile dual writes
+
+## Outcomes
+
+- Peak error budget burn dropped materially
+- Incident bridges shortened because state became inspectable
+- Product could run campaigns without emergency architecture freezes
+
+## Role
+
+Led design workshops, authored ADRs, and paired with service owners through the first production cutovers.

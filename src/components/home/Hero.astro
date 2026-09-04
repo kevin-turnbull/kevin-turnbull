@@ -1,0 +1,107 @@
+---
+import Wordmark from "../brand/Wordmark.astro";
+import CtaGroup from "../brand/CtaGroup.astro";
+import type { SiteProfile } from "../../lib/content";
+
+interface Props {
+  profile: SiteProfile;
+}
+
+const { profile } = Astro.props;
+const ctaLabel =
+  profile.availability === "open"
+    ? "Start a conversation"
+    : profile.availability === "selective"
+      ? "Discuss a fit"
+      : "Say hello";
+---
+
+<section class="hero" aria-label="Introduction">
+  <div class="hero-media" aria-hidden="true">
+    <img
+      class="hero-media-motion"
+      src={profile.heroImage}
+      alt=""
+      width="1920"
+      height="1080"
+      fetchpriority="high"
+    />
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content page-wrap">
+    <Wordmark name={profile.fullName} class="reveal-up" />
+    <p class="hero-headline font-display reveal-up reveal-up-delay-1">{profile.headline}</p>
+    <p class="hero-support reveal-up reveal-up-delay-2">{profile.supportingSentence}</p>
+    <CtaGroup
+      class="reveal-up reveal-up-delay-3"
+      primaryHref="/contact"
+      primaryLabel={ctaLabel}
+      secondaryHref="/work"
+      secondaryLabel="Selected work"
+    />
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: grid;
+    align-items: end;
+    color: var(--color-paper);
+    overflow: clip;
+  }
+
+  .hero-media,
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-overlay {
+    background:
+      linear-gradient(180deg, rgba(10, 14, 18, 0.25) 0%, rgba(10, 14, 18, 0.72) 58%, rgba(10, 14, 18, 0.9) 100%),
+      radial-gradient(circle at 70% 20%, rgba(181, 106, 60, 0.22), transparent 45%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    padding-block: var(--space-8) var(--space-7);
+    display: grid;
+    gap: var(--space-4);
+    max-width: 56rem;
+  }
+
+  .hero-headline {
+    font-size: clamp(1.6rem, 3.4vw, 2.5rem);
+    max-width: 18ch;
+    font-weight: 500;
+  }
+
+  .hero-support {
+    max-width: 34rem;
+    color: color-mix(in oklab, var(--color-paper) 86%, transparent);
+    font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+  }
+
+  .hero :global(.btn-primary) {
+    background: var(--color-copper);
+    color: #fff;
+  }
+
+  .hero :global(.btn-primary:hover) {
+    background: var(--color-copper-deep);
+  }
+
+  .hero :global(.btn-secondary) {
+    border-color: color-mix(in oklab, white 45%, transparent);
+    color: var(--color-paper);
+  }
+</style>

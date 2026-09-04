@@ -1,0 +1,22 @@
+fullName: Kevin Turnbull
+shortName: Kevin Turnbull
+headline: Senior software architect for complex product systems
+supportingSentence: I help teams turn ambiguous constraints into clear architecture, durable delivery, and calm execution.
+availability: selective
+locationLabel: Remote
+timeZone: America/Los_Angeles
+email: hello@kevin-turnbull.example
+socialLinks:
+  - label: LinkedIn
+    href: https://www.linkedin.com/in/kevin-turnbull
+  - label: GitHub
+    href: https://github.com/kevin-turnbull
+heroImage: /images/hero.jpg
+portraitImage: /images/hero.jpg
+resumePdf: /resume/kevin-turnbull.pdf
+seoTitle: Kevin Turnbull — Senior Software Architect
+seoDescription: Personal site for Kevin Turnbull, a senior software architect focused on systems design, trade-offs, and high-craft product delivery.
+contact:
+  responseExpectation: Usually within two business days.
+  engagementNotes: Selective advisory, architecture reviews, and senior IC / leadership conversations.
+  formEndpoint: ""

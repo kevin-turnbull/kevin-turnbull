@@ -1,0 +1,12 @@
+---
+interface Props {
+  notes: string;
+  responseExpectation: string;
+}
+const { notes, responseExpectation } = Astro.props;
+---
+
+<div class="stack-md">
+  <p class="lede">{notes}</p>
+  <p class="muted"><strong>Response:</strong> {responseExpectation}</p>
+</div>

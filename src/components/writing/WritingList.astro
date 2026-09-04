@@ -1,0 +1,52 @@
+---
+interface Props {
+  items: {
+    slug: string;
+    title: string;
+    type: string;
+    date: Date;
+    abstract: string;
+  }[];
+}
+const { items } = Astro.props;
+---
+
+{
+  items.length === 0 ? (
+    <div class="empty-state stack-md">
+      <h2 class="font-display" style="font-size:1.8rem;">Notes forthcoming</h2>
+      <p class="muted">
+        Essays and talks will land here. Meanwhile, explore selected work or start a conversation.
+      </p>
+      <div class="cta-group">
+        <a class="btn btn-secondary" href="/work">
+          Selected work
+        </a>
+        <a class="btn btn-primary" href="/contact">
+          Contact
+        </a>
+      </div>
+    </div>
+  ) : (
+    <ul class="writing-list">
+      {items.map((item) => (
+        <li class="writing-item">
+          <a href={`/writing/${item.slug}`}>
+            <div class="meta">
+              <span>{item.type}</span>
+              <span>
+                {item.date.toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </span>
+            </div>
+            <h2>{item.title}</h2>
+            <p class="muted">{item.abstract}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}
