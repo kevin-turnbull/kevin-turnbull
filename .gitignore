@@ -1,0 +1,16 @@
+# Dependencies & build
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+!.env.example
+
+# Spec Kit local/cache
+.specify/feature.json
+.specify/extensions/.cache/
+.specify/extensions/*/local-config.yml
+
+# OS / editor
+.DS_Store
+*.log
