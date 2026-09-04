@@ -19,10 +19,10 @@ story phases focus on implementation first.
 
 **Purpose**: Initialize Astro project and Spec Kit–aligned repo layout
 
-- [ ] T001 Scaffold Astro 5 + TypeScript app at repository root with `package.json`, `astro.config.mjs`, `tsconfig.json`
-- [ ] T002 [P] Create directory tree `src/{components,content,layouts,pages,styles,lib}`, `public/{fonts,images,resume}`, `tests/{e2e,a11y}` per plan.md
-- [ ] T003 [P] Add `.gitignore`, `.nvmrc` (Node 22), and env example `.env.example` for `PUBLIC_FORM_ENDPOINT`
-- [ ] T004 Update `README.md` with Spec Kit workflow, setup, and scripts (`dev`, `build`, `typecheck`, `test:e2e`, `test:a11y`)
+- [x] T001 Scaffold Astro 5 + TypeScript app at repository root with `package.json`, `astro.config.mjs`, `tsconfig.json`
+- [x] T002 [P] Create directory tree `src/{components,content,layouts,pages,styles,lib}`, `public/{fonts,images,resume}`, `tests/{e2e,a11y}` per plan.md
+- [x] T003 [P] Add `.gitignore`, `.nvmrc` (Node 22), and env example `.env.example` for `PUBLIC_FORM_ENDPOINT`
+- [x] T004 Update `README.md` with Spec Kit workflow, setup, and scripts (`dev`, `build`, `typecheck`, `test:e2e`, `test:a11y`)
 
 ---
 
@@ -32,16 +32,16 @@ story phases focus on implementation first.
 
 **⚠️ CRITICAL**: No user story work until this phase completes
 
-- [ ] T005 Author design tokens and base styles in `src/styles/tokens.css`, `src/styles/reset.css`, `src/styles/typography.css`, `src/styles/layout.css`, `src/styles/motion.css`
-- [ ] T006 [P] Add expressive webfonts under `public/fonts/` and wire `@font-face` in `src/styles/typography.css`
-- [ ] T007 Implement `src/layouts/BaseLayout.astro` with SEO helpers from `src/lib/seo.ts`, skip link, and `#main` landmark
-- [ ] T008 [P] Implement `src/components/layout/SkipLink.astro`, `src/components/layout/SiteNav.astro`, `src/components/layout/SiteFooter.astro`
-- [ ] T009 Configure Astro content collections + Zod schemas in `src/content.config.ts` matching `contracts/content-frontmatter.md`
-- [ ] T010 [P] Seed `src/content/profile/site.yaml` with Kevin Turnbull profile defaults and placeholder social links
-- [ ] T011 [P] Add placeholder hero atmosphere image at `public/images/hero.jpg` (replaceable asset)
-- [ ] T012 Implement content accessors in `src/lib/content.ts` for profile, case studies, career, philosophy, writing
-- [ ] T013 Create designed `src/pages/404.astro` with recovery links to `/` and `/work`
-- [ ] T014 Wire global import of styles in `BaseLayout.astro` and verify `npm run dev` serves shell on all stub routes
+- [x] T005 Author design tokens and base styles in `src/styles/tokens.css`, `src/styles/reset.css`, `src/styles/typography.css`, `src/styles/layout.css`, `src/styles/motion.css`
+- [x] T006 [P] Add expressive webfonts under `public/fonts/` and wire `@font-face` in `src/styles/typography.css`
+- [x] T007 Implement `src/layouts/BaseLayout.astro` with SEO helpers from `src/lib/seo.ts`, skip link, and `#main` landmark
+- [x] T008 [P] Implement `src/components/layout/SkipLink.astro`, `src/components/layout/SiteNav.astro`, `src/components/layout/SiteFooter.astro`
+- [x] T009 Configure Astro content collections + Zod schemas in `src/content.config.ts` matching `contracts/content-frontmatter.md`
+- [x] T010 [P] Seed `src/content/profile/site.yaml` with Kevin Turnbull profile defaults and placeholder social links
+- [x] T011 [P] Add placeholder hero atmosphere image at `public/images/hero.jpg` (replaceable asset)
+- [x] T012 Implement content accessors in `src/lib/content.ts` for profile, case studies, career, philosophy, writing
+- [x] T013 Create designed `src/pages/404.astro` with recovery links to `/` and `/work`
+- [x] T014 Wire global import of styles in `BaseLayout.astro` and verify `npm run dev` serves shell on all stub routes
 
 **Checkpoint**: Foundation ready — user stories can proceed
 
@@ -55,13 +55,13 @@ story phases focus on implementation first.
 
 ### Implementation for User Story 1
 
-- [ ] T015 [P] [US1] Build `src/components/brand/Wordmark.astro` for hero-level name treatment
-- [ ] T016 [P] [US1] Build `src/components/home/Hero.astro` enforcing allowed-only first-viewport elements
-- [ ] T017 [P] [US1] Build `src/components/brand/CtaGroup.astro` (primary → contact, optional secondary)
-- [ ] T018 [US1] Implement `src/pages/index.astro` composing Hero only above the fold from profile content
-- [ ] T019 [US1] Add hero load motion (staggered fade-up) + reduced-motion branch in `src/styles/motion.css` / Hero
-- [ ] T020 [US1] Add subtle hero image motion (parallax or ken-burns) disabled under `prefers-reduced-motion`
-- [ ] T021 [US1] Stub `src/pages/contact.astro` minimal reachable target so home CTA is not a dead end
+- [x] T015 [P] [US1] Build `src/components/brand/Wordmark.astro` for hero-level name treatment
+- [x] T016 [P] [US1] Build `src/components/home/Hero.astro` enforcing allowed-only first-viewport elements
+- [x] T017 [P] [US1] Build `src/components/brand/CtaGroup.astro` (primary → contact, optional secondary)
+- [x] T018 [US1] Implement `src/pages/index.astro` composing Hero only above the fold from profile content
+- [x] T019 [US1] Add hero load motion (staggered fade-up) + reduced-motion branch in `src/styles/motion.css` / Hero
+- [x] T020 [US1] Add subtle hero image motion (parallax or ken-burns) disabled under `prefers-reduced-motion`
+- [x] T021 [US1] Stub `src/pages/contact.astro` minimal reachable target so home CTA is not a dead end
 
 **Checkpoint**: US1 MVP demoable (brand home + CTA target)
 
@@ -75,10 +75,10 @@ story phases focus on implementation first.
 
 ### Implementation for User Story 5
 
-- [ ] T022 [P] [US5] Build `src/components/contact/ContactIntro.astro` with engagement notes + response expectation from profile
-- [ ] T023 [P] [US5] Build `src/components/contact/ContactForm.astro` posting to configured form endpoint with progressive enhancement
-- [ ] T024 [US5] Complete `src/pages/contact.astro` with form, mailto fallback, and success/error UI states
-- [ ] T025 [US5] Document form endpoint setup in `README.md` and `.env.example`
+- [x] T022 [P] [US5] Build `src/components/contact/ContactIntro.astro` with engagement notes + response expectation from profile
+- [x] T023 [P] [US5] Build `src/components/contact/ContactForm.astro` posting to configured form endpoint with progressive enhancement
+- [x] T024 [US5] Complete `src/pages/contact.astro` with form, mailto fallback, and success/error UI states
+- [x] T025 [US5] Document form endpoint setup in `README.md` and `.env.example`
 
 **Checkpoint**: Home → Contact conversion path complete
 
@@ -92,13 +92,13 @@ story phases focus on implementation first.
 
 ### Implementation for User Story 2
 
-- [ ] T026 [P] [US2] Add 3 sample case studies under `src/content/case-studies/*.mdx` with required frontmatter + sections
-- [ ] T027 [P] [US2] Build `src/components/work/WorkList.astro` and `src/components/work/WorkListItem.astro` (index only; not hero cards-on-image)
-- [ ] T028 [US2] Implement `src/pages/work/index.astro` listing non-draft featured studies by `featuredRank`
-- [ ] T029 [US2] Implement `src/layouts/ProseLayout.astro` for long-form case study reading
-- [ ] T030 [US2] Implement `src/pages/work/[slug].astro` rendering Problem/Constraints/Approach/Decisions/Outcomes/Role
-- [ ] T031 [US2] Add typographic/media fallback when `heroImage` missing on a case study
-- [ ] T032 [US2] Add scroll reveal for work list items (motion #3) with reduced-motion disable
+- [x] T026 [P] [US2] Add 3 sample case studies under `src/content/case-studies/*.mdx` with required frontmatter + sections
+- [x] T027 [P] [US2] Build `src/components/work/WorkList.astro` and `src/components/work/WorkListItem.astro` (index only; not hero cards-on-image)
+- [x] T028 [US2] Implement `src/pages/work/index.astro` listing non-draft featured studies by `featuredRank`
+- [x] T029 [US2] Implement `src/layouts/ProseLayout.astro` for long-form case study reading
+- [x] T030 [US2] Implement `src/pages/work/[slug].astro` rendering Problem/Constraints/Approach/Decisions/Outcomes/Role
+- [x] T031 [US2] Add typographic/media fallback when `heroImage` missing on a case study
+- [x] T032 [US2] Add scroll reveal for work list items (motion #3) with reduced-motion disable
 
 **Checkpoint**: Credibility proof path Home → Work → Detail → Contact works
 
@@ -112,10 +112,10 @@ story phases focus on implementation first.
 
 ### Implementation for User Story 3
 
-- [ ] T033 [P] [US3] Seed `src/content/philosophy/*.yaml` and `src/content/career/*.yaml` (or list files)
-- [ ] T034 [P] [US3] Build `src/components/about/AboutNarrative.astro`, `PhilosophyList.astro`, `CareerSpine.astro`
-- [ ] T035 [US3] Implement `src/pages/about.astro` composing narrative, philosophy, career, optional portrait
-- [ ] T036 [US3] Place résumé PDF at `public/resume/kevin-turnbull.pdf` (or hide control if absent) and link from About
+- [x] T033 [P] [US3] Seed `src/content/philosophy/*.yaml` and `src/content/career/*.yaml` (or list files)
+- [x] T034 [P] [US3] Build `src/components/about/AboutNarrative.astro`, `PhilosophyList.astro`, `CareerSpine.astro`
+- [x] T035 [US3] Implement `src/pages/about.astro` composing narrative, philosophy, career, optional portrait
+- [x] T036 [US3] Place résumé PDF at `public/resume/kevin-turnbull.pdf` (or hide control if absent) and link from About
 
 **Checkpoint**: About credibility spine complete
 
@@ -129,10 +129,10 @@ story phases focus on implementation first.
 
 ### Implementation for User Story 4
 
-- [ ] T037 [P] [US4] Build `src/components/writing/WritingList.astro` and empty state component
-- [ ] T038 [US4] Implement `src/pages/writing/index.astro` for non-draft pieces
-- [ ] T039 [US4] Implement `src/pages/writing/[slug].astro` using ProseLayout (support `externalUrl` talk pattern)
-- [ ] T040 [P] [US4] Optionally seed 1 sample essay in `src/content/writing/` for demo (keep empty-state path testable via draft flag)
+- [x] T037 [P] [US4] Build `src/components/writing/WritingList.astro` and empty state component
+- [x] T038 [US4] Implement `src/pages/writing/index.astro` for non-draft pieces
+- [x] T039 [US4] Implement `src/pages/writing/[slug].astro` using ProseLayout (support `externalUrl` talk pattern)
+- [x] T040 [P] [US4] Optionally seed 1 sample essay in `src/content/writing/` for demo (keep empty-state path testable via draft flag)
 
 **Checkpoint**: Thought leadership section ready
 
@@ -146,10 +146,10 @@ story phases focus on implementation first.
 
 ### Implementation for User Story 6
 
-- [ ] T041 [US6] Finalize `SiteNav.astro` active states and mobile nav pattern without cluttering hero
-- [ ] T042 [US6] Finalize `SiteFooter.astro` with social links, secondary nav, copyright from profile
-- [ ] T043 [US6] Audit focus-visible styles across interactive elements in `src/styles/layout.css`
-- [ ] T044 [US6] Ensure all pages use BaseLayout SEO titles/descriptions per route contract
+- [x] T041 [US6] Finalize `SiteNav.astro` active states and mobile nav pattern without cluttering hero
+- [x] T042 [US6] Finalize `SiteFooter.astro` with social links, secondary nav, copyright from profile
+- [x] T043 [US6] Audit focus-visible styles across interactive elements in `src/styles/layout.css`
+- [x] T044 [US6] Ensure all pages use BaseLayout SEO titles/descriptions per route contract
 
 **Checkpoint**: Cross-cutting UX trust complete
 
@@ -159,12 +159,12 @@ story phases focus on implementation first.
 
 **Purpose**: Quality gates, tests, content readiness for launch
 
-- [ ] T045 [P] Add Playwright config and journey `tests/e2e/home-work-contact.spec.ts`
-- [ ] T046 [P] Add axe accessibility smoke `tests/a11y/critical-pages.spec.ts` for `/`, `/work`, `/about`, `/contact`
-- [ ] T047 Run `npm run build` and fix content schema / type errors
-- [ ] T048 Execute `quickstart.md` manual scenarios V1–V5 and record results in PR notes
-- [ ] T049 [P] Replace placeholder imagery with final licensed/owned photography in `public/images/`
-- [ ] T050 Constitution compliance pass: verify no hero cards/stats/chips; document any exceptions in plan Complexity Tracking
+- [x] T045 [P] Add Playwright config and journey `tests/e2e/home-work-contact.spec.ts`
+- [x] T046 [P] Add axe accessibility smoke `tests/a11y/critical-pages.spec.ts` for `/`, `/work`, `/about`, `/contact`
+- [x] T047 Run `npm run build` and fix content schema / type errors
+- [x] T048 Execute `quickstart.md` manual scenarios V1–V5 and record results in PR notes
+- [x] T049 [P] Replace placeholder imagery with final licensed/owned photography in `public/images/`
+- [x] T050 Constitution compliance pass: verify no hero cards/stats/chips; document any exceptions in plan Complexity Tracking
 
 ---
 
@@ -240,3 +240,16 @@ Or execute tasks T001→ sequentially on this branch.
 - Do not put cards, stats, or promo chips in the home hero (constitution).
 - Prefer content edits in `src/content/**` over hardcoding copy in components.
 - Commit after each task or logical group; keep Spec Kit artifacts in sync.
+
+## Phase 10: Convergence
+
+**Purpose**: Close remaining gaps found by `/speckit-converge` against spec, plan, constitution, and prior tasks
+
+- [x] T051 CRITICAL Replace procedural placeholder hero with real licensed/owned photography in `public/images/hero.jpg` (and update profile paths) per Constitution Design Standards + T049 (`partial`)
+- [x] T052 Provide a valid résumé PDF at `public/resume/kevin-turnbull.pdf` (or hide the About download when absent) per FR-011 / US3 (`partial`)
+- [x] T053 [P] Render optional About portrait from `profile.portraitImage` in `src/pages/about.astro` when present per US3 / plan About (`missing`)
+- [x] T054 Improve mobile primary navigation in `src/components/layout/SiteNav.astro` beyond wrap-only stacking per T041 / FR-008 / US6 (`partial`)
+- [x] T055 [P] Pass absolute Open Graph image URLs from `BaseLayout`/`seo.ts` using `Astro.site` + profile hero defaults per contracts SEO (`partial`)
+- [x] T056 [P] Extract `src/components/work/WorkListItem.astro` and wire it from `WorkList.astro` per T027 (`partial`)
+- [x] T057 Add Playwright coverage for Writing empty state (draft-all or fixture) in `tests/e2e/writing-empty.spec.ts` per FR-007 (`missing`)
+- [x] T058 Record quickstart V1–V5 validation notes in `specs/001-architect-personal-site/quickstart-results.md` per T048 (`partial`)

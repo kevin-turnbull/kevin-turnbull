@@ -1,0 +1,83 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import AboutNarrative from "../components/about/AboutNarrative.astro";
+import PhilosophyList from "../components/about/PhilosophyList.astro";
+import CareerSpine from "../components/about/CareerSpine.astro";
+import { getCareer, getPhilosophy, getProfile } from "../lib/content";
+import { existsSync } from "node:fs";
+import { resolve } from "node:path";
+
+const profile = getProfile();
+const philosophy = (await getPhilosophy()).map((p) => ({
+  title: p.data.title,
+  body: p.data.body,
+}));
+const career = (await getCareer()).map((c) => c.data);
+const resumeOnDisk = profile.resumePdf
+  ? existsSync(resolve(`public${profile.resumePdf}`))
+  : false;
+const showResume = Boolean(profile.resumePdf && resumeOnDisk);
+---
+
+<BaseLayout title="About" description="Background, philosophy, and career spine." path="/about">
+  <section class="page-wrap page-section stack-lg">
+    <header class="about-header">
+      <div class="stack-md">
+        <h1 class="section-title">About</h1>
+        <AboutNarrative body="I work at the intersection of product ambition and operational reality—helping organizations design systems that stay understandable as they scale." />
+      </div>
+      {
+        profile.portraitImage && (
+          <img
+            class="about-portrait"
+            src={profile.portraitImage}
+            alt={`${profile.fullName} portrait`}
+            width="900"
+            height="900"
+          />
+        )
+      }
+    </header>
+
+    {
+      showResume && (
+        <p>
+          <a class="btn btn-secondary" href={profile.resumePdf}>
+            Download résumé
+          </a>
+        </p>
+      )
+    }
+
+    <div class="stack-md">
+      <h2 class="font-display" style="font-size:2rem;">Philosophy</h2>
+      <PhilosophyList items={philosophy} />
+    </div>
+
+    <div class="stack-md">
+      <h2 class="font-display" style="font-size:2rem;">Career spine</h2>
+      <CareerSpine items={career} />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-header {
+    display: grid;
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  .about-portrait {
+    width: min(100%, 18rem);
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+  }
+
+  @media (min-width: 840px) {
+    .about-header {
+      grid-template-columns: 1.4fr 0.8fr;
+    }
+  }
+</style>

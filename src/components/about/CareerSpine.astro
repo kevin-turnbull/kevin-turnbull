@@ -1,0 +1,29 @@
+---
+interface Props {
+  items: {
+    organization: string;
+    title: string;
+    start: string;
+    end: string;
+    focus: string;
+  }[];
+}
+const { items } = Astro.props;
+---
+
+<ul class="career-list">
+  {
+    items.map((item) => (
+      <li class="career-item">
+        <div class="meta">
+          <span>
+            {item.start} — {item.end}
+          </span>
+          <span>{item.organization}</span>
+        </div>
+        <h3 style="font-size:1.2rem; margin-top:0.4rem;">{item.title}</h3>
+        <p class="muted">{item.focus}</p>
+      </li>
+    ))
+  }
+</ul>

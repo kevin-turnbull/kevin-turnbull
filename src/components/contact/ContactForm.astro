@@ -1,0 +1,82 @@
+---
+interface Props {
+  email: string;
+  formEndpoint?: string;
+}
+
+const { email, formEndpoint = "" } = Astro.props;
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT || formEndpoint || "";
+---
+
+<form class="stack-md" method="POST" action={endpoint || undefined} data-contact-form>
+  {endpoint ? (
+    <p class="muted">Messages are delivered through the configured form endpoint.</p>
+  ) : (
+    <p class="muted">
+      No <code>PUBLIC_FORM_ENDPOINT</code> configured — submit opens your email client. Set the env var to enable hosted delivery.
+    </p>
+  )}
+  {!endpoint && <input type="hidden" name="_gotcha" value="" tabindex="-1" aria-hidden="true" />}
+  <div class="field">
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text" autocomplete="name" required />
+  </div>
+  <div class="field">
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" autocomplete="email" required />
+  </div>
+  <div class="field">
+    <label for="message">Message</label>
+    <textarea id="message" name="message" required></textarea>
+  </div>
+  <button class="btn btn-primary" type="submit">Send message</button>
+  <p class="muted">
+    Prefer email? <a href={`mailto:${email}`}>{email}</a>
+  </p>
+  <div class="form-status" data-form-status role="status" aria-live="polite" hidden></div>
+</form>
+
+<script define:vars={{ email, endpoint }}>
+  const form = document.querySelector("[data-contact-form]");
+  const status = document.querySelector("[data-form-status]");
+  if (!form || !(form instanceof HTMLFormElement) || !status) {
+    // no-op
+  } else {
+    form.addEventListener("submit", async (event) => {
+      if (!endpoint) {
+        event.preventDefault();
+        const data = new FormData(form);
+        const name = String(data.get("name") || "");
+        const from = String(data.get("email") || "");
+        const message = String(data.get("message") || "");
+        const body = encodeURIComponent(`From: ${name} <${from}>\n\n${message}`);
+        window.location.href = `mailto:${email}?subject=${encodeURIComponent("Website inquiry")}&body=${body}`;
+        status.hidden = false;
+        status.dataset.tone = "ok";
+        status.textContent =
+          "Opening your email client as a fallback. If nothing opens, write directly to " + email + ".";
+        return;
+      }
+
+      event.preventDefault();
+      status.hidden = false;
+      status.dataset.tone = "ok";
+      status.textContent = "Sending…";
+      try {
+        const res = await fetch(endpoint, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" },
+        });
+        if (!res.ok) throw new Error("Request failed");
+        status.dataset.tone = "ok";
+        status.textContent = "Message sent. Expect a reply within two business days.";
+        form.reset();
+      } catch {
+        status.dataset.tone = "err";
+        status.textContent =
+          "Something went wrong sending the form. Please email " + email + " instead.";
+      }
+    });
+  }
+</script>

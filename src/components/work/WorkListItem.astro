@@ -1,0 +1,24 @@
+---
+interface Props {
+  slug: string;
+  title: string;
+  summary: string;
+  organization: string;
+  timeframe: string;
+  role: string;
+}
+
+const { slug, title, summary, organization, timeframe, role } = Astro.props;
+---
+
+<li class="work-item scroll-reveal">
+  <a href={`/work/${slug}`}>
+    <div class="meta">
+      <span>{organization}</span>
+      <span>{timeframe}</span>
+      <span>{role}</span>
+    </div>
+    <h2>{title}</h2>
+    <p class="muted">{summary}</p>
+  </a>
+</li>

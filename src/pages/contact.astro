@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactIntro from "../components/contact/ContactIntro.astro";
+import ContactForm from "../components/contact/ContactForm.astro";
+import { getProfile } from "../lib/content";
+
+const profile = getProfile();
+---
+
+<BaseLayout title="Contact" description="Start a conversation with Kevin Turnbull." path="/contact">
+  <section class="page-wrap page-section stack-lg">
+    <header class="stack-md">
+      <h1 class="section-title">Contact</h1>
+      <ContactIntro
+        notes={profile.contact.engagementNotes}
+        responseExpectation={profile.contact.responseExpectation}
+      />
+    </header>
+    <ContactForm email={profile.email} formEndpoint={profile.contact.formEndpoint} />
+  </section>
+</BaseLayout>

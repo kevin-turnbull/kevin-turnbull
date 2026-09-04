@@ -1,0 +1,30 @@
+:root {
+  --color-ink: #12171c;
+  --color-ink-soft: #334155;
+  --color-stone: #e7e2d8;
+  --color-stone-deep: #cfc7b8;
+  --color-paper: #f3efe7;
+  --color-copper: #b56a3c;
+  --color-copper-deep: #8f4f2b;
+  --color-line: color-mix(in oklab, var(--color-ink) 14%, transparent);
+  --color-focus: #2f6fed;
+
+  --font-display: "Fraunces", "Times New Roman", serif;
+  --font-body: "Figtree", "Segoe UI", sans-serif;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
+
+  --measure: 38rem;
+  --measure-wide: 68rem;
+  --radius-sm: 0.35rem;
+  --nav-height: 4.25rem;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}

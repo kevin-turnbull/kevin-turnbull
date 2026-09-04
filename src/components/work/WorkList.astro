@@ -1,0 +1,42 @@
+---
+import WorkListItem from "./WorkListItem.astro";
+
+interface Props {
+  items: {
+    slug: string;
+    title: string;
+    summary: string;
+    organization: string;
+    timeframe: string;
+    role: string;
+  }[];
+}
+
+const { items } = Astro.props;
+---
+
+<ul class="work-list">
+  {items.map((item) => <WorkListItem {...item} />)}
+</ul>
+
+<script>
+  const nodes = document.querySelectorAll(".scroll-reveal");
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    nodes.forEach((n) => n.classList.add("is-visible"));
+  } else if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 },
+    );
+    nodes.forEach((n) => io.observe(n));
+  } else {
+    nodes.forEach((n) => n.classList.add("is-visible"));
+  }
+</script>

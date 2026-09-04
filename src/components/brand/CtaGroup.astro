@@ -1,0 +1,28 @@
+---
+interface Props {
+  primaryHref: string;
+  primaryLabel: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+  class?: string;
+}
+
+const {
+  primaryHref,
+  primaryLabel,
+  secondaryHref,
+  secondaryLabel,
+  class: className = "",
+} = Astro.props;
+---
+
+<div class:list={["cta-group", className]}>
+  <a class="btn btn-primary" href={primaryHref}>{primaryLabel}</a>
+  {
+    secondaryHref && secondaryLabel && (
+      <a class="btn btn-secondary" href={secondaryHref}>
+        {secondaryLabel}
+      </a>
+    )
+  }
+</div>

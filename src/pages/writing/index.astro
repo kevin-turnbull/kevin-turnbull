@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import WritingList from "../../components/writing/WritingList.astro";
+import { getPublishedWriting } from "../../lib/content";
+
+const items = (await getPublishedWriting()).map((w) => ({
+  slug: w.id,
+  title: w.data.title,
+  type: w.data.type,
+  date: w.data.date,
+  abstract: w.data.abstract,
+}));
+---
+
+<BaseLayout title="Writing" description="Essays, talks, and notes." path="/writing">
+  <section class="page-wrap page-section stack-lg">
+    <header class="stack-md">
+      <h1 class="section-title">Writing</h1>
+      <p class="lede">Thoughts on architecture judgment, delivery, and design leadership.</p>
+    </header>
+    <WritingList items={items} />
+  </section>
+</BaseLayout>

@@ -1,0 +1,35 @@
+---
+import { getCollection, render } from "astro:content";
+import ProseLayout from "../../layouts/ProseLayout.astro";
+
+export async function getStaticPaths() {
+  const studies = await getCollection("caseStudies", ({ data }) => !data.draft);
+  return studies.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const hasImage = Boolean(entry.data.heroImage);
+---
+
+<ProseLayout
+  title={entry.data.title}
+  description={entry.data.summary}
+  path={`/work/${entry.id}`}
+  eyebrow={`${entry.data.organization} · ${entry.data.timeframe} · ${entry.data.role}`}
+>
+  {
+    hasImage ? (
+      <img src={entry.data.heroImage} alt="" width="1200" height="675" />
+    ) : (
+      <p class="muted" style="border-left: 3px solid var(--color-copper); padding-left: 1rem;">
+        Visual forthcoming — the architecture narrative stands on its own.
+      </p>
+    )
+  }
+  <Content />
+  <p><a href="/work">← Back to selected work</a></p>
+</ProseLayout>
