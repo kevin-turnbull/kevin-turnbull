@@ -14,7 +14,10 @@ dist/
 # OS / editor
 .DS_Store
 *.log
+<<<<<<< HEAD
 .vscode/
 
 test-results/
 playwright-report/
+=======
+>>>>>>> origin/main
