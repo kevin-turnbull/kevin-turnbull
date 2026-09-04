@@ -5,12 +5,13 @@ interface Props {
   title: string;
   description?: string;
   eyebrow?: string;
+  path?: string;
 }
 
-const { title, description, eyebrow } = Astro.props;
+const { title, description, eyebrow, path } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} path={path}>
   <article class="page-wrap page-section stack-lg">
     <header class="stack-md">
       {eyebrow && <p class="muted">{eyebrow}</p>}

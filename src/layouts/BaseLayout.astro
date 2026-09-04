@@ -41,6 +41,8 @@ const seo = buildSeo(
     <meta property="og:description" content={seo.description} />
     <meta property="og:type" content="website" />
     {seo.image && <meta property="og:image" content={seo.image} />}
+    <meta property="og:url" content={seo.url} />
+    <link rel="canonical" href={seo.url} />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{seo.title}</title>

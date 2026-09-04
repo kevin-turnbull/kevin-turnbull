@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import ProseLayout from "../../layouts/ProseLayout.astro";
+import { formatContentDate } from "../../lib/dates";
 
 export async function getStaticPaths() {
   const posts = await getCollection("writing", ({ data }) => !data.draft);
@@ -17,7 +18,8 @@ const { Content } = await render(entry);
 <ProseLayout
   title={entry.data.title}
   description={entry.data.abstract}
-  eyebrow={`${entry.data.type} · ${entry.data.date.toLocaleDateString("en-US")}`}
+  path={`/writing/${entry.id}`}
+  eyebrow={`${entry.data.type} · ${formatContentDate(entry.data.date)}`}
 >
   {
     entry.data.externalUrl ? (

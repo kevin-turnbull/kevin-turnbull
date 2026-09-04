@@ -33,7 +33,7 @@ const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT || formEndpoint || "";
   <p class="muted">
     Prefer email? <a href={`mailto:${email}`}>{email}</a>
   </p>
-  <div class="form-status" data-form-status hidden></div>
+  <div class="form-status" data-form-status role="status" aria-live="polite" hidden></div>
 </form>
 
 <script define:vars={{ email, endpoint }}>
@@ -53,7 +53,8 @@ const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT || formEndpoint || "";
         window.location.href = `mailto:${email}?subject=${encodeURIComponent("Website inquiry")}&body=${body}`;
         status.hidden = false;
         status.dataset.tone = "ok";
-        status.textContent = "Opening your email client as a fallback. If nothing opens, write directly to " + email + ".";
+        status.textContent =
+          "Opening your email client as a fallback. If nothing opens, write directly to " + email + ".";
         return;
       }
 
@@ -73,12 +74,8 @@ const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT || formEndpoint || "";
         form.reset();
       } catch {
         status.dataset.tone = "err";
-        status.innerHTML =
-          "Something went wrong sending the form. Please email <a href=\"mailto:" +
-          email +
-          "\">" +
-          email +
-          "</a> instead.";
+        status.textContent =
+          "Something went wrong sending the form. Please email " + email + " instead.";
       }
     });
   }

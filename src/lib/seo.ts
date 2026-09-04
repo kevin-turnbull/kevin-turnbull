@@ -13,6 +13,15 @@ export function buildSeo(
   const title = input.title ? `${input.title} · Kevin Turnbull` : defaults.seoTitle;
   const description = input.description ?? defaults.seoDescription;
   const siteBase = typeof site === "string" ? site : site?.href;
+  const path = input.path ?? "/";
+  let url = path;
+  if (siteBase) {
+    try {
+      url = new URL(path, siteBase).href;
+    } catch {
+      url = path;
+    }
+  }
   const rawImage = input.image ?? defaults.heroImage;
   let image = rawImage;
   if (rawImage && siteBase) {
@@ -22,5 +31,5 @@ export function buildSeo(
       image = rawImage;
     }
   }
-  return { title, description, image, path: input.path ?? "/" };
+  return { title, description, image, path, url };
 }

@@ -18,6 +18,7 @@ const hasImage = Boolean(entry.data.heroImage);
 <ProseLayout
   title={entry.data.title}
   description={entry.data.summary}
+  path={`/work/${entry.id}`}
   eyebrow={`${entry.data.organization} · ${entry.data.timeframe} · ${entry.data.role}`}
 >
   {
