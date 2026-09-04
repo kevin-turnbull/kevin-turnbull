@@ -51,17 +51,14 @@
     animation: atmosphere-in 1600ms var(--ease-out) both;
   }
 
+  /* Transform only — opacity would fail contrast checks on below-fold items. */
   .js .scroll-reveal {
-    opacity: 0;
     transform: translateY(1.4rem);
-    transition:
-      opacity var(--dur-slow) var(--ease-out),
-      transform var(--dur-slow) var(--ease-out);
+    transition: transform var(--dur-slow) var(--ease-out);
     transition-delay: calc(var(--reveal-i, 0) * 70ms);
   }
 
   .js .scroll-reveal.is-visible {
-    opacity: 1;
     transform: none;
   }
 }
