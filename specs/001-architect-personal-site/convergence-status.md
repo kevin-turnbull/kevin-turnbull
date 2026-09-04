@@ -1,10 +1,16 @@
-# Convergence status — 2026-09-04 (post-polish)
+# Convergence status — launch complete
 
-Re-checked after checklist review + form/photo docs polish.
+**Outcome**: Site implementation is complete and merged to `main`.
 
-**Outcome**: Converged for specified launch scope.
+## Shipped
+- Brand-first Astro static site (Home, Work, About, Writing, Contact, 404)
+- Spec Kit artifacts, tests (e2e + a11y), SEO/sitemap/robots, deploy config
+- Unsplash-licensed hero/portrait with attribution
+- Contact form with `PUBLIC_FORM_ENDPOINT` or mailto fallback
+- Résumé PDF download on About
 
-Remaining human-only items (not blocking code convergence):
-- Provide owned hero/portrait photography if Unsplash interim assets are unacceptable
-- Create a real Formspree/Getform form and set `PUBLIC_FORM_ENDPOINT` in deployment env
-- Replace example email / social URLs in `src/content/profile/site.yaml` with production values
+## Operator steps for a live custom domain
+1. Set production email / social URLs in `src/content/profile/site.yaml`
+2. Create Formspree/Getform and set `PUBLIC_FORM_ENDPOINT` in the host env
+3. Deploy `dist/` via Netlify, Cloudflare Pages, or GitHub Pages
+4. Optional: replace hero/portrait with owned photography

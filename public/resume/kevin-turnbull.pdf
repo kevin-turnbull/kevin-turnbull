@@ -2,8 +2,82 @@
 1 0 obj<< /Type /Catalog /Pages 2 0 R >>endobj
 2 0 obj<< /Type /Pages /Kids [3 0 R] /Count 1 >>endobj
 3 0 obj<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources<< /Font<< /F1 5 0 R >> >> >>endobj
-4 0 obj<< /Length 210 >>stream
-BT /F1 24 Tf 72 720 Td (Kevin Turnbull) Tj 0 -36 Td /F1 14 Tf (Senior Software Architect) Tj 0 -28 Td /F1 11 Tf (Selective advisory and architecture leadership.) Tj 0 -24 Td (hello@kevin-turnbull.example) Tj ET
+4 0 obj<< /Length 1483 >>stream
+BT
+/F1 11 Tf
+72 760 Td
+/F1 24 Tf
+(Kevin Turnbull) Tj
+0 -24 Td
+/F1 14 Tf
+(Senior Software Architect) Tj
+0 -14 Td
+/F1 10 Tf
+(Remote · hello@kevin-turnbull.example · linkedin.com/in/kevin-turnbull) Tj
+0 -14 Td
+/F1 10 Tf
+() Tj
+0 -23 Td
+/F1 13 Tf
+(Summary) Tj
+0 -14 Td
+/F1 10 Tf
+(Senior architect for complex product systems. I help teams convert) Tj
+0 -14 Td
+/F1 10 Tf
+(ambiguous constraints into clear architecture, durable delivery,) Tj
+0 -14 Td
+/F1 10 Tf
+(and calm execution across platforms, resilience, and security.) Tj
+0 -14 Td
+/F1 10 Tf
+() Tj
+0 -23 Td
+/F1 13 Tf
+(Selected experience) Tj
+0 -14 Td
+/F1 10 Tf
+(Independent / Advisory ? Senior Software Architect \(2024?Present\)) Tj
+0 -14 Td
+/F1 10 Tf
+(Architecture advisory, platform strategy, and design leadership.) Tj
+0 -12 Td
+/F1 8 Tf
+() Tj
+0 -14 Td
+/F1 10 Tf
+(Prior product organizations ? Staff / Principal Engineer & Architect \(2016?2024\)) Tj
+0 -14 Td
+/F1 10 Tf
+(Led cross-team architecture for platforms, resilience, and DX.) Tj
+0 -14 Td
+/F1 10 Tf
+() Tj
+0 -23 Td
+/F1 13 Tf
+(Selected work) Tj
+0 -14 Td
+/F1 10 Tf
+(? Platform consolidation without freezing delivery) Tj
+0 -14 Td
+/F1 10 Tf
+(? Event-driven order flow under peak uncertainty) Tj
+0 -14 Td
+/F1 10 Tf
+(? Security architecture product teams could actually use) Tj
+0 -14 Td
+/F1 10 Tf
+() Tj
+0 -23 Td
+/F1 13 Tf
+(Philosophy) Tj
+0 -14 Td
+/F1 10 Tf
+(Clarity beats cleverness. Constraints are design material.) Tj
+0 -14 Td
+/F1 10 Tf
+(Delivery is part of the design.) Tj
+ET
 endstream
 endobj
 5 0 obj<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>endobj
@@ -14,8 +88,8 @@ xref
 0000000056 00000 n 
 0000000111 00000 n 
 0000000233 00000 n 
-0000000492 00000 n 
+0000001766 00000 n 
 trailer<< /Size 6 /Root 1 0 R >>
 startxref
-560
+1834
 %%EOF

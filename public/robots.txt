@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.kevin-turnbull.com/sitemap-index.xml
