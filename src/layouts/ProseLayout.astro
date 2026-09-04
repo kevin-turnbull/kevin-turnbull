@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import PageHeader from "../components/layout/PageHeader.astro";
 
 interface Props {
   title: string;
@@ -9,17 +10,29 @@ interface Props {
 }
 
 const { title, description, eyebrow, path } = Astro.props;
+const hasMedia = Astro.slots.has("media");
 ---
 
 <BaseLayout title={title} description={description} path={path}>
-  <article class="page-wrap page-section stack-lg">
-    <header class="stack-md">
-      {eyebrow && <p class="muted">{eyebrow}</p>}
-      <h1 class="section-title">{title}</h1>
-      {description && <p class="lede">{description}</p>}
-    </header>
-    <div class="prose">
-      <slot />
+  <article class="page-wrap">
+    <PageHeader eyebrow={eyebrow ?? "Note"} title={title} lede={description} />
+    {
+      hasMedia && (
+        <div class="prose-lead">
+          <slot name="media" />
+        </div>
+      )
+    }
+    <div class="page-section">
+      <div class="prose">
+        <slot />
+      </div>
     </div>
   </article>
 </BaseLayout>
+
+<style>
+  .prose-lead {
+    margin-block-start: clamp(2rem, 5vw, 3.5rem);
+  }
+</style>

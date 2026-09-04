@@ -5,8 +5,32 @@ interface Props {
 }
 
 const { name, class: className = "" } = Astro.props;
+const words = name.trim().split(/\s+/);
 ---
 
-<h1 class:list={["font-display", className]} style="font-size: clamp(3rem, 9vw, 6.5rem); margin: 0;">
-  {name}
+<h1 class:list={["wordmark", className]}>
+  {
+    words.map((word, index) => (
+      <>
+        <span class="wordmark-line">
+          <span class="wordmark-word" style={`--wm-i:${index}`}>
+            {word}
+          </span>
+        </span>
+        {index < words.length - 1 ? " " : null}
+      </>
+    ))
+  }
 </h1>
+
+<style>
+  .wordmark {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: var(--text-mega);
+    letter-spacing: var(--tracking-mega);
+    line-height: 0.84;
+    text-transform: none;
+  }
+</style>

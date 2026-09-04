@@ -2,7 +2,20 @@
 interface Props {
   body: string;
 }
+
 const { body } = Astro.props;
 ---
 
-<p class="lede">{body}</p>
+<p class="about-statement">{body}</p>
+
+<style>
+  .about-statement {
+    max-inline-size: 24ch;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--text-xl);
+    letter-spacing: -0.025em;
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+</style>

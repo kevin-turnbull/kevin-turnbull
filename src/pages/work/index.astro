@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHeader from "../../components/layout/PageHeader.astro";
 import WorkList from "../../components/work/WorkList.astro";
 import { getFeaturedCaseStudies } from "../../lib/content";
 
@@ -19,11 +20,14 @@ const items = studies.map((s) => ({
   description="Selected architecture engagements and outcomes."
   path="/work"
 >
-  <section class="page-wrap page-section stack-lg">
-    <header class="stack-md">
-      <h1 class="section-title">Selected work</h1>
-      <p class="lede">A curated set of engagements—problem, constraints, decisions, and outcomes.</p>
-    </header>
-    <WorkList items={items} />
-  </section>
+  <div class="page-wrap">
+    <PageHeader
+      eyebrow="Index"
+      title="Selected work"
+      lede="A curated set of engagements — the problem, the constraints, the decisions, and what held up afterwards."
+    />
+    <section class="page-section" aria-label="Case studies">
+      <WorkList items={items} />
+    </section>
+  </div>
 </BaseLayout>

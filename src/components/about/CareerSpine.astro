@@ -8,6 +8,7 @@ interface Props {
     focus: string;
   }[];
 }
+
 const { items } = Astro.props;
 ---
 
@@ -21,7 +22,7 @@ const { items } = Astro.props;
           </span>
           <span>{item.organization}</span>
         </div>
-        <h3 style="font-size:1.2rem; margin-top:0.4rem;">{item.title}</h3>
+        <h3 class="career-title">{item.title}</h3>
         <p class="muted">{item.focus}</p>
       </li>
     ))

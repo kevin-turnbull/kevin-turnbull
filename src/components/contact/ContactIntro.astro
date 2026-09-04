@@ -1,12 +1,48 @@
 ---
 interface Props {
-  notes: string;
+  email: string;
   responseExpectation: string;
+  locationLabel?: string;
 }
-const { notes, responseExpectation } = Astro.props;
+
+const { email, responseExpectation, locationLabel } = Astro.props;
 ---
 
-<div class="stack-md">
-  <p class="lede">{notes}</p>
-  <p class="muted"><strong>Response:</strong> {responseExpectation}</p>
+<div class="contact-intro">
+  <div class="contact-fact">
+    <p class="micro-label">Direct</p>
+    <a class="direct-line" href={`mailto:${email}`}>{email}</a>
+  </div>
+  <div class="contact-fact">
+    <p class="micro-label">Response</p>
+    <p>{responseExpectation}</p>
+  </div>
+  {
+    locationLabel && (
+      <div class="contact-fact">
+        <p class="micro-label">Based</p>
+        <p>{locationLabel}</p>
+      </div>
+    )
+  }
 </div>
+
+<style>
+  .contact-intro {
+    display: grid;
+    gap: clamp(1.5rem, 3vw, 2.25rem);
+    align-content: start;
+  }
+
+  .contact-fact {
+    display: grid;
+    gap: 0.4rem;
+    padding-block-start: 1rem;
+    border-block-start: 1px solid var(--line);
+  }
+
+  .contact-fact p:not(.micro-label) {
+    font-weight: 300;
+    color: var(--ink-soft);
+  }
+</style>

@@ -1,16 +1,57 @@
+/* Luminous Precision — cool luminous canvas, deep blue-black ink, one emerald signal. */
 :root {
-  --color-ink: #12171c;
-  --color-ink-soft: #334155;
-  --color-stone: #e7e2d8;
-  --color-stone-deep: #cfc7b8;
-  --color-paper: #f3efe7;
-  --color-copper: #b56a3c;
-  --color-copper-deep: #8f4f2b;
-  --color-line: color-mix(in oklab, var(--color-ink) 14%, transparent);
-  --color-focus: #2f6fed;
+  color-scheme: light;
 
-  --font-display: "Fraunces", "Times New Roman", serif;
-  --font-body: "Figtree", "Segoe UI", sans-serif;
+  /* Canvas: cool and luminous, never warm */
+  --canvas: #edf1f5;
+  --canvas-lift: #f7fafc;
+  --canvas-sink: #e2e8ee;
+
+  /* Ink: deep blue-black */
+  --ink: #060c13;
+  --ink-strong: #16222d;
+  --ink-soft: #46586a;
+  --ink-faint: #56697a;
+
+  /* Signal: a single architectural emerald */
+  --signal: #0b7a63;
+  --signal-strong: #06584a;
+  --signal-glow: #4fe3bb;
+
+  /* Night: inverted cinematic surfaces */
+  --night: #050a10;
+  --night-lift: #0b141d;
+  --paper: #f2f7f9;
+  --paper-soft: #c3d1d9;
+
+  /* Hairlines carry the structure instead of borders and cards */
+  --line: color-mix(in oklab, var(--ink) 13%, transparent);
+  --line-strong: color-mix(in oklab, var(--ink) 26%, transparent);
+  --line-signal: color-mix(in oklab, var(--signal) 45%, transparent);
+  --line-night: color-mix(in oklab, #ffffff 18%, transparent);
+
+  --focus: #0b7a63;
+
+  --font-display: "Syne", "Space Grotesk", ui-sans-serif, sans-serif;
+  --font-body: "Outfit", "DM Sans", ui-sans-serif, sans-serif;
+  --font-numeric: "Syne", ui-monospace, monospace;
+
+  /* Fluid type scale */
+  --text-2xs: 0.6875rem;
+  --text-xs: 0.78rem;
+  --text-sm: 0.875rem;
+  --text-base: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  --text-md: clamp(1.06rem, 1rem + 0.32vw, 1.2rem);
+  --text-lg: clamp(1.2rem, 1.1rem + 0.55vw, 1.5rem);
+  --text-xl: clamp(1.45rem, 1.28rem + 0.85vw, 2rem);
+  --text-2xl: clamp(1.8rem, 1.5rem + 1.5vw, 2.75rem);
+  --text-3xl: clamp(2.4rem, 1.7rem + 3.4vw, 4.25rem);
+  --text-4xl: clamp(2.75rem, 1.6rem + 5.4vw, 5.5rem);
+  --text-mega: clamp(3rem, 0.6rem + 11.4vw, 10.5rem);
+
+  --tracking-mega: -0.045em;
+  --tracking-tight: -0.03em;
+  --tracking-eyebrow: 0.22em;
 
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -21,10 +62,25 @@
   --space-7: 3rem;
   --space-8: 4.5rem;
   --space-9: 7rem;
+  --space-section: clamp(3.5rem, 9vw, 8rem);
+  --gutter: clamp(1.25rem, 5vw, 3.5rem);
 
-  --measure: 38rem;
-  --measure-wide: 68rem;
-  --radius-sm: 0.35rem;
-  --nav-height: 4.25rem;
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --measure: 36rem;
+  --measure-lede: 44rem;
+  --measure-wide: 78rem;
+  --shell: 78rem;
+
+  /* Sharp-modern geometry: almost square, never pill */
+  --radius-xs: 2px;
+  --radius-sm: 3px;
+  --radius-md: 6px;
+
+  --nav-height: 4.75rem;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 180ms;
+  --dur-mid: 340ms;
+  --dur-slow: 720ms;
+  --dur-cinematic: 1200ms;
 }

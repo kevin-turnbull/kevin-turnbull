@@ -4,6 +4,7 @@ interface Props {
   primaryLabel: string;
   secondaryHref?: string;
   secondaryLabel?: string;
+  tone?: "day" | "night";
   class?: string;
 }
 
@@ -12,11 +13,12 @@ const {
   primaryLabel,
   secondaryHref,
   secondaryLabel,
+  tone = "day",
   class: className = "",
 } = Astro.props;
 ---
 
-<div class:list={["cta-group", className]}>
+<div class:list={["cta-group", className]} data-tone={tone}>
   <a class="btn btn-primary" href={primaryHref}>{primaryLabel}</a>
   {
     secondaryHref && secondaryLabel && (

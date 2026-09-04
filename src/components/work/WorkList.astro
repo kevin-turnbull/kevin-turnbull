@@ -16,27 +16,29 @@ const { items } = Astro.props;
 ---
 
 <ul class="work-list">
-  {items.map((item) => <WorkListItem {...item} />)}
+  {items.map((item, index) => <WorkListItem {...item} index={index} />)}
 </ul>
 
 <script>
   const nodes = document.querySelectorAll(".scroll-reveal");
+  const reveal = (node: Element) => node.classList.add("is-visible");
+
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    nodes.forEach((n) => n.classList.add("is-visible"));
+    nodes.forEach(reveal);
   } else if ("IntersectionObserver" in window) {
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
+            reveal(entry.target);
             io.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.2 },
+      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
     );
-    nodes.forEach((n) => io.observe(n));
+    nodes.forEach((node) => io.observe(node));
   } else {
-    nodes.forEach((n) => n.classList.add("is-visible"));
+    nodes.forEach(reveal);
   }
 </script>

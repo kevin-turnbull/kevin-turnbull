@@ -16,10 +16,11 @@ interface Props {
   image?: string;
   path?: string;
   noindex?: boolean;
+  overlayNav?: boolean;
 }
 
 const profile = getProfile();
-const { noindex = false } = Astro.props;
+const { noindex = false, overlayNav = false } = Astro.props;
 const seo = buildSeo(
   {
     seoTitle: profile.seoTitle,
@@ -36,6 +37,8 @@ const seo = buildSeo(
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#050a10" />
     <meta name="description" content={seo.description} />
     <meta property="og:title" content={seo.title} />
     <meta property="og:description" content={seo.description} />
@@ -46,11 +49,14 @@ const seo = buildSeo(
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{seo.title}</title>
+    <script is:inline>
+      document.documentElement.classList.add("js");
+    </script>
   </head>
   <body>
     <div class="site-shell">
       <SkipLink />
-      <SiteNav profile={profile} />
+      <SiteNav profile={profile} overlay={overlayNav} />
       <main id="main" class="site-main">
         <slot />
       </main>

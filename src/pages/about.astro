@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/layout/PageHeader.astro";
 import AboutNarrative from "../components/about/AboutNarrative.astro";
 import PhilosophyList from "../components/about/PhilosophyList.astro";
 import CareerSpine from "../components/about/CareerSpine.astro";
@@ -20,64 +21,64 @@ const showResume = Boolean(profile.resumePdf && resumeOnDisk);
 ---
 
 <BaseLayout title="About" description="Background, philosophy, and career spine." path="/about">
-  <section class="page-wrap page-section stack-lg">
-    <header class="about-header">
-      <div class="stack-md">
-        <h1 class="section-title">About</h1>
-        <AboutNarrative body="I work at the intersection of product ambition and operational reality—helping organizations design systems that stay understandable as they scale." />
+  <div class="page-wrap">
+    <PageHeader
+      eyebrow="Profile"
+      title="About"
+      lede="I work at the intersection of product ambition and operational reality — helping organizations design systems that stay understandable as they scale."
+    />
+
+    <section class="page-section split split-about" aria-label="Practice">
+      <div class="about-intro">
+        <p class="eyebrow">In practice</p>
+        <AboutNarrative body="A system earns its keep when the next team can reason about it without a guide." />
+        {
+          showResume && (
+            <p>
+              <a class="btn btn-secondary" href={profile.resumePdf}>
+                Download résumé
+              </a>
+            </p>
+          )
+        }
       </div>
       {
         profile.portraitImage && (
           <img
-            class="about-portrait"
+            class="framed-image"
             src={profile.portraitImage}
             alt={`${profile.fullName} portrait`}
             width="900"
             height="900"
+            loading="lazy"
           />
         )
       }
-    </header>
+    </section>
 
-    {
-      showResume && (
-        <p>
-          <a class="btn btn-secondary" href={profile.resumePdf}>
-            Download résumé
-          </a>
-        </p>
-      )
-    }
-
-    <div class="stack-md">
-      <h2 class="font-display" style="font-size:2rem;">Philosophy</h2>
+    <section class="page-section" aria-labelledby="philosophy-heading">
+      <div class="section-head">
+        <p class="eyebrow">Principles</p>
+        <h2 id="philosophy-heading" class="section-title">Philosophy</h2>
+      </div>
       <PhilosophyList items={philosophy} />
-    </div>
+    </section>
 
-    <div class="stack-md">
-      <h2 class="font-display" style="font-size:2rem;">Career spine</h2>
+    <section class="page-section" aria-labelledby="career-heading">
+      <div class="section-head">
+        <p class="eyebrow">Trajectory</p>
+        <h2 id="career-heading" class="section-title">Career spine</h2>
+      </div>
       <CareerSpine items={career} />
-    </div>
-  </section>
+    </section>
+  </div>
 </BaseLayout>
 
 <style>
-  .about-header {
+  .about-intro {
     display: grid;
-    gap: var(--space-6);
-    align-items: start;
-  }
-
-  .about-portrait {
-    width: min(100%, 18rem);
-    aspect-ratio: 1;
-    object-fit: cover;
-    border-radius: var(--radius-sm);
-  }
-
-  @media (min-width: 840px) {
-    .about-header {
-      grid-template-columns: 1.4fr 0.8fr;
-    }
+    gap: clamp(1.25rem, 3vw, 2rem);
+    justify-items: start;
+    align-content: start;
   }
 </style>

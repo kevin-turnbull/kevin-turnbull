@@ -3,9 +3,10 @@ import type { SiteProfile } from "../../lib/content";
 
 interface Props {
   profile: SiteProfile;
+  overlay?: boolean;
 }
 
-const { profile } = Astro.props;
+const { profile, overlay = false } = Astro.props;
 const path = Astro.url.pathname;
 const links = [
   { href: "/work", label: "Work" },
@@ -20,11 +21,11 @@ function isCurrent(href: string) {
 }
 ---
 
-<header class="site-header">
+<header class="site-header" data-overlay={overlay ? "" : undefined}>
   <div class="nav-inner">
     <a class="nav-brand" href="/">{profile.shortName}</a>
     <details class="nav-mobile">
-      <summary class="nav-mobile-toggle btn btn-secondary">Menu</summary>
+      <summary class="nav-mobile-toggle">Menu</summary>
       <nav aria-label="Primary mobile">
         <ul class="nav-list nav-list-mobile">
           {

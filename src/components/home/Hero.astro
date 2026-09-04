@@ -25,83 +25,140 @@ const ctaLabel =
       width="1920"
       height="1080"
       fetchpriority="high"
+      decoding="async"
     />
   </div>
-  <div class="hero-overlay"></div>
+  <div class="hero-grade" aria-hidden="true"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+
   <div class="hero-content page-wrap">
-    <Wordmark name={profile.fullName} class="reveal-up" />
-    <p class="hero-headline font-display reveal-up reveal-up-delay-1">{profile.headline}</p>
-    <p class="hero-support reveal-up reveal-up-delay-2">{profile.supportingSentence}</p>
-    <CtaGroup
-      class="reveal-up reveal-up-delay-3"
-      primaryHref="/contact"
-      primaryLabel={ctaLabel}
-      secondaryHref="/work"
-      secondaryLabel="Selected work"
-    />
+    <span class="hero-signal" aria-hidden="true"></span>
+    <Wordmark name={profile.fullName} />
+    <div class="hero-lower">
+      <p class="hero-headline reveal" style="--reveal-delay: 520ms">{profile.headline}</p>
+      <div class="hero-aside">
+        <p class="hero-support reveal" style="--reveal-delay: 640ms">
+          {profile.supportingSentence}
+        </p>
+        <CtaGroup
+          class="reveal"
+          tone="night"
+          primaryHref="/contact"
+          primaryLabel={ctaLabel}
+          secondaryHref="/work"
+          secondaryLabel="Selected work"
+        />
+      </div>
+    </div>
   </div>
 </section>
 
 <style>
   .hero {
     position: relative;
-    min-height: 100svh;
     display: grid;
-    align-items: end;
-    color: var(--color-paper);
+    align-content: end;
+    min-block-size: 100svh;
+    padding-block: calc(var(--nav-height) + 2rem) clamp(3rem, 8vh, 6rem);
+    background-color: var(--night);
+    color: var(--paper);
     overflow: clip;
   }
 
   .hero-media,
-  .hero-overlay {
+  .hero-grade,
+  .hero-grid {
     position: absolute;
     inset: 0;
   }
 
   .hero-media img {
-    width: 100%;
-    height: 100%;
+    inline-size: 100%;
+    block-size: 100%;
     object-fit: cover;
+    filter: saturate(0.48) contrast(1.08) brightness(0.82);
   }
 
-  .hero-overlay {
+  /* Cool the photograph toward the ink so the emerald reads as the only signal. */
+  .hero-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #0b2a3a;
+    mix-blend-mode: color;
+    opacity: 0.38;
+  }
+
+  .hero-grade {
     background:
-      linear-gradient(180deg, rgba(10, 14, 18, 0.25) 0%, rgba(10, 14, 18, 0.72) 58%, rgba(10, 14, 18, 0.9) 100%),
-      radial-gradient(circle at 70% 20%, rgba(181, 106, 60, 0.22), transparent 45%);
+      radial-gradient(115% 85% at 80% 6%, rgba(79, 227, 187, 0.15), transparent 58%),
+      linear-gradient(
+        180deg,
+        rgba(4, 9, 15, 0.8) 0%,
+        rgba(4, 9, 15, 0.2) 26%,
+        rgba(4, 9, 15, 0.62) 64%,
+        rgba(4, 9, 15, 0.96) 100%
+      ),
+      linear-gradient(94deg, rgba(4, 9, 15, 0.72) 0%, rgba(4, 9, 15, 0.1) 62%);
+  }
+
+  /* Drafting grid: the only ornament, and it is measured rather than decorative. */
+  .hero-grid {
+    --atmosphere-opacity: 0.42;
+    opacity: 0.42;
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.16) 0 1px, transparent 1px);
+    background-size: calc(100% / 9) 100%;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 24%, #000 60%, transparent 94%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 24%, #000 60%, transparent 94%);
   }
 
   .hero-content {
     position: relative;
-    z-index: 1;
-    padding-block: var(--space-8) var(--space-7);
+    z-index: 2;
+  }
+
+  .hero-signal {
+    display: block;
+    margin-block-end: clamp(1.25rem, 3vh, 2rem);
+  }
+
+  .hero-lower {
     display: grid;
-    gap: var(--space-4);
-    max-width: 56rem;
+    gap: clamp(1.5rem, 3vw, 2.25rem);
+    margin-block-start: clamp(1.5rem, 4vh, 2.75rem);
   }
 
   .hero-headline {
-    font-size: clamp(1.6rem, 3.4vw, 2.5rem);
-    max-width: 18ch;
-    font-weight: 500;
+    max-inline-size: 20ch;
+    font-size: clamp(1.25rem, 2.3vw, 1.9rem);
+    font-weight: 300;
+    line-height: 1.22;
+    letter-spacing: -0.012em;
+    color: var(--paper);
+    text-wrap: balance;
+  }
+
+  .hero-aside {
+    display: grid;
+    gap: clamp(1.35rem, 3vw, 1.9rem);
+    justify-items: start;
   }
 
   .hero-support {
-    max-width: 34rem;
-    color: color-mix(in oklab, var(--color-paper) 86%, transparent);
-    font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+    max-inline-size: 34rem;
+    font-weight: 300;
+    color: var(--paper-soft);
   }
 
-  .hero :global(.btn-primary) {
-    background: var(--color-copper);
-    color: #fff;
+  .hero :global(.cta-group) {
+    --reveal-delay: 760ms;
   }
 
-  .hero :global(.btn-primary:hover) {
-    background: var(--color-copper-deep);
-  }
-
-  .hero :global(.btn-secondary) {
-    border-color: color-mix(in oklab, white 45%, transparent);
-    color: var(--color-paper);
+  @media (min-width: 64rem) {
+    .hero-lower {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+      column-gap: clamp(2.5rem, 6vw, 5.5rem);
+      align-items: end;
+    }
   }
 </style>
