@@ -1,0 +1,90 @@
+---
+const modes = [
+  { id: "light", label: "Light" },
+  { id: "dark", label: "Dark" },
+  { id: "system", label: "System" },
+] as const;
+---
+
+<div class="theme-toggle" data-theme-toggle>
+  <span class="theme-toggle-label" id="theme-toggle-label">Theme</span>
+  <div class="theme-toggle-group" role="group" aria-labelledby="theme-toggle-label">
+    {
+      modes.map((mode) => (
+        <button
+          type="button"
+          class="theme-toggle-btn"
+          data-theme-option={mode.id}
+          aria-pressed="false"
+        >
+          {mode.label}
+        </button>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = "kt-theme";
+
+  type Preference = "light" | "dark" | "system";
+  type Resolved = "light" | "dark";
+
+  const isPreference = (value: string | null): value is Preference =>
+    value === "light" || value === "dark" || value === "system";
+
+  const systemPrefersDark = () =>
+    window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  const resolve = (preference: Preference): Resolved =>
+    preference === "system" ? (systemPrefersDark() ? "dark" : "light") : preference;
+
+  const readPreference = (): Preference => {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return isPreference(stored) ? stored : "system";
+  };
+
+  const applyTheme = (preference: Preference) => {
+    const resolved = resolve(preference);
+    const root = document.documentElement;
+    root.dataset.theme = resolved;
+    root.dataset.themePreference = preference;
+    root.style.colorScheme = resolved;
+
+    const metaScheme = document.querySelector('meta[name="color-scheme"]');
+    if (metaScheme) metaScheme.setAttribute("content", "light dark");
+
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (metaTheme) {
+      metaTheme.setAttribute(
+        "content",
+        resolved === "dark" ? "#070c12" : "#edf1f5",
+      );
+    }
+
+    document.querySelectorAll<HTMLButtonElement>("[data-theme-option]").forEach((button) => {
+      const active = button.dataset.themeOption === preference;
+      button.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+  };
+
+  const setPreference = (preference: Preference) => {
+    localStorage.setItem(STORAGE_KEY, preference);
+    applyTheme(preference);
+  };
+
+  const sync = () => applyTheme(readPreference());
+
+  document.querySelectorAll<HTMLButtonElement>("[data-theme-option]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const next = button.dataset.themeOption;
+      if (isPreference(next)) setPreference(next);
+    });
+  });
+
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+    if (readPreference() === "system") sync();
+  });
+
+  sync();
+</script>

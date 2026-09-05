@@ -1,5 +1,8 @@
-/* Luminous Precision — cool luminous canvas, deep blue-black ink, one emerald signal. */
-:root {
+/* Luminous Precision — cool luminous canvas, deep blue-black ink, one emerald signal.
+   Themes: light (default), dark, and system (resolved in JS before paint). */
+
+:root,
+html[data-theme="light"] {
   color-scheme: light;
 
   /* Canvas: cool and luminous, never warm */
@@ -18,7 +21,7 @@
   --signal-strong: #06584a;
   --signal-glow: #4fe3bb;
 
-  /* Night: inverted cinematic surfaces */
+  /* Night: inverted cinematic surfaces (hero / overlay) */
   --night: #050a10;
   --night-lift: #0b141d;
   --paper: #f2f7f9;
@@ -31,7 +34,77 @@
   --line-night: color-mix(in oklab, #ffffff 18%, transparent);
 
   --focus: #0b7a63;
+  --theme-chrome: #edf1f5;
+}
 
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Canvas: deep blue-black, slightly lifted surfaces */
+  --canvas: #070c12;
+  --canvas-lift: #0e1620;
+  --canvas-sink: #04080d;
+
+  /* Ink: cool paper on night */
+  --ink: #e6eef4;
+  --ink-strong: #f4f8fb;
+  --ink-soft: #9aabba;
+  --ink-faint: #7d8f9f;
+
+  /* Signal: brighter emerald so it holds on dark canvas */
+  --signal: #2bb891;
+  --signal-strong: #4fe3bb;
+  --signal-glow: #7af0cc;
+
+  /* Night stays cinematic for hero / overlay */
+  --night: #03070c;
+  --night-lift: #0a121c;
+  --paper: #eef4f7;
+  --paper-soft: #a8b8c4;
+
+  --line: color-mix(in oklab, #ffffff 12%, transparent);
+  --line-strong: color-mix(in oklab, #ffffff 22%, transparent);
+  --line-signal: color-mix(in oklab, var(--signal) 50%, transparent);
+  --line-night: color-mix(in oklab, #ffffff 18%, transparent);
+
+  --focus: #4fe3bb;
+  --theme-chrome: #070c12;
+}
+
+/* System preference before JS runs, or when preference is unset. */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]):not([data-theme="dark"]) {
+    color-scheme: dark;
+
+    --canvas: #070c12;
+    --canvas-lift: #0e1620;
+    --canvas-sink: #04080d;
+
+    --ink: #e6eef4;
+    --ink-strong: #f4f8fb;
+    --ink-soft: #9aabba;
+    --ink-faint: #7d8f9f;
+
+    --signal: #2bb891;
+    --signal-strong: #4fe3bb;
+    --signal-glow: #7af0cc;
+
+    --night: #03070c;
+    --night-lift: #0a121c;
+    --paper: #eef4f7;
+    --paper-soft: #a8b8c4;
+
+    --line: color-mix(in oklab, #ffffff 12%, transparent);
+    --line-strong: color-mix(in oklab, #ffffff 22%, transparent);
+    --line-signal: color-mix(in oklab, var(--signal) 50%, transparent);
+    --line-night: color-mix(in oklab, #ffffff 18%, transparent);
+
+    --focus: #4fe3bb;
+    --theme-chrome: #070c12;
+  }
+}
+
+:root {
   --font-display: "Syne", "Space Grotesk", ui-sans-serif, sans-serif;
   --font-body: "Outfit", "DM Sans", ui-sans-serif, sans-serif;
   --font-numeric: "Syne", ui-monospace, monospace;

@@ -73,7 +73,17 @@ figure {
 
 ::selection {
   background: color-mix(in oklab, var(--signal-glow) 55%, transparent);
-  color: var(--ink);
+  color: var(--ink-strong);
+}
+
+html {
+  background: var(--canvas);
+}
+
+body {
+  transition:
+    background-color var(--dur-mid) var(--ease-out),
+    color var(--dur-mid) var(--ease-out);
 }
 
 hr {
