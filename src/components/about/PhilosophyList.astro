@@ -2,15 +2,19 @@
 interface Props {
   items: { title: string; body: string }[];
 }
+
 const { items } = Astro.props;
 ---
 
 <ul class="philosophy-list">
   {
-    items.map((item) => (
-      <li class="philosophy-item stack-md">
-        <h2 class="font-display" style="font-size:1.5rem;">{item.title}</h2>
-        <p>{item.body}</p>
+    items.map((item, index) => (
+      <li class="philosophy-item">
+        <span class="philosophy-index" aria-hidden="true">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        <h3 class="subhead">{item.title}</h3>
+        <p class="muted">{item.body}</p>
       </li>
     ))
   }

@@ -1,14 +1,20 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/layout/PageHeader.astro";
 ---
 
 <BaseLayout title="Page not found" description="That page does not exist.">
-  <section class="page-wrap page-section stack-lg">
-    <h1 class="section-title">Page not found</h1>
-    <p class="lede">The link may be outdated, or the page moved.</p>
-    <div class="cta-group">
-      <a class="btn btn-primary" href="/">Home</a>
-      <a class="btn btn-secondary" href="/work">Selected work</a>
-    </div>
-  </section>
+  <div class="page-wrap">
+    <PageHeader
+      eyebrow="404"
+      title="Page not found"
+      lede="The link may be outdated, or the page has moved."
+    />
+    <section class="page-section" aria-label="Continue">
+      <div class="cta-group">
+        <a class="btn btn-primary" href="/">Home</a>
+        <a class="btn btn-secondary" href="/work">Selected work</a>
+      </div>
+    </section>
+  </div>
 </BaseLayout>

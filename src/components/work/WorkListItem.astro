@@ -6,19 +6,23 @@ interface Props {
   organization: string;
   timeframe: string;
   role: string;
+  index: number;
 }
 
-const { slug, title, summary, organization, timeframe, role } = Astro.props;
+const { slug, title, summary, organization, timeframe, role, index } = Astro.props;
+const ordinal = String(index + 1).padStart(2, "0");
 ---
 
-<li class="work-item scroll-reveal">
-  <a href={`/work/${slug}`}>
+<li class="work-item scroll-reveal" style={`--reveal-i:${index}`}>
+  <a class="entry-link" href={`/work/${slug}`}>
+    <span class="entry-index" aria-hidden="true">{ordinal}</span>
     <div class="meta">
       <span>{organization}</span>
       <span>{timeframe}</span>
       <span>{role}</span>
     </div>
-    <h2>{title}</h2>
-    <p class="muted">{summary}</p>
+    <h2 class="entry-title">{title}</h2>
+    <p class="entry-summary">{summary}</p>
+    <span class="entry-arrow" aria-hidden="true"></span>
   </a>
 </li>

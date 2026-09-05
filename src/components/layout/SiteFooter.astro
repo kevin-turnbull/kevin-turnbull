@@ -11,11 +11,22 @@ const year = new Date().getFullYear();
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <div class="footer-links" aria-label="Footer">
+    <div class="footer-identity">
+      <p class="footer-brand">{profile.fullName}</p>
+      <p class="footer-tagline">Architecture with clarity and craft.</p>
+      <a class="footer-email" href={`mailto:${profile.email}`}>{profile.email}</a>
+    </div>
+
+    <nav class="footer-nav" aria-label="Footer">
+      <p class="eyebrow">Site</p>
       <a href="/work">Work</a>
       <a href="/about">About</a>
       <a href="/writing">Writing</a>
       <a href="/contact">Contact</a>
+    </nav>
+
+    <div class="footer-social">
+      <p class="eyebrow">Elsewhere</p>
       {
         profile.socialLinks.map((link) => (
           <a href={link.href} rel="me noopener noreferrer" target="_blank">
@@ -24,9 +35,36 @@ const year = new Date().getFullYear();
         ))
       }
     </div>
-    <p class="muted">© {year} {profile.fullName}. Architecture with clarity and craft.</p>
-    <p class="muted">
-      Site photography: see <a href="/images/ATTRIBUTION.md">image attribution</a>. Replace with owned assets for production branding.
-    </p>
+
+    <div class="footer-meta">
+      <span>© {year} {profile.fullName}</span>
+      <span>{profile.locationLabel}</span>
+      <span>
+        Photography credits in <a href="/images/ATTRIBUTION.md">image attribution</a>
+      </span>
+    </div>
   </div>
 </footer>
+
+<style>
+  .footer-identity {
+    display: grid;
+    gap: 0.5rem;
+    justify-items: start;
+    align-content: start;
+  }
+
+  .footer-tagline {
+    max-inline-size: 26rem;
+    font-weight: 300;
+    color: var(--ink-soft);
+  }
+
+  .footer-email {
+    margin-block-start: 0.35rem;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration-color: var(--line-signal);
+  }
+</style>

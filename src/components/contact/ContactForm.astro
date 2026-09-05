@@ -8,14 +8,8 @@ const { email, formEndpoint = "" } = Astro.props;
 const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT || formEndpoint || "";
 ---
 
-<form class="stack-md" method="POST" action={endpoint || undefined} data-contact-form>
-  {endpoint ? (
-    <p class="muted">Messages are delivered through the configured form endpoint.</p>
-  ) : (
-    <p class="muted">
-      No <code>PUBLIC_FORM_ENDPOINT</code> configured — submit opens your email client. Set the env var to enable hosted delivery.
-    </p>
-  )}
+<form class="contact-form" method="POST" action={endpoint || undefined} data-contact-form>
+  <p class="eyebrow">Message</p>
   {!endpoint && <input type="hidden" name="_gotcha" value="" tabindex="-1" aria-hidden="true" />}
   <div class="field">
     <label for="name">Name</label>
@@ -29,12 +23,26 @@ const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT || formEndpoint || "";
     <label for="message">Message</label>
     <textarea id="message" name="message" required></textarea>
   </div>
-  <button class="btn btn-primary" type="submit">Send message</button>
-  <p class="muted">
-    Prefer email? <a href={`mailto:${email}`}>{email}</a>
-  </p>
+  <div class="form-actions">
+    <button class="btn btn-primary" type="submit">Send message</button>
+    <p class="form-note">
+      {
+        endpoint
+          ? "Messages are delivered through the configured form endpoint."
+          : "No form endpoint is configured yet — sending opens your email client instead."
+      }
+    </p>
+  </div>
   <div class="form-status" data-form-status role="status" aria-live="polite" hidden></div>
 </form>
+
+<style>
+  .form-actions {
+    display: grid;
+    gap: var(--space-3);
+    justify-items: start;
+  }
+</style>
 
 <script define:vars={{ email, endpoint }}>
   const form = document.querySelector("[data-contact-form]");

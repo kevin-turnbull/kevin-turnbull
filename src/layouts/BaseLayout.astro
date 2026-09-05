@@ -16,10 +16,11 @@ interface Props {
   image?: string;
   path?: string;
   noindex?: boolean;
+  overlayNav?: boolean;
 }
 
 const profile = getProfile();
-const { noindex = false } = Astro.props;
+const { noindex = false, overlayNav = false } = Astro.props;
 const seo = buildSeo(
   {
     seoTitle: profile.seoTitle,
@@ -36,6 +37,8 @@ const seo = buildSeo(
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#edf1f5" />
     <meta name="description" content={seo.description} />
     <meta property="og:title" content={seo.title} />
     <meta property="og:description" content={seo.description} />
@@ -46,11 +49,35 @@ const seo = buildSeo(
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{seo.title}</title>
+    <script is:inline>
+      (() => {
+        document.documentElement.classList.add("js");
+        const key = "kt-theme";
+        const stored = localStorage.getItem(key);
+        const preference =
+          stored === "light" || stored === "dark" || stored === "system"
+            ? stored
+            : "system";
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const resolved =
+          preference === "system" ? (prefersDark ? "dark" : "light") : preference;
+        document.documentElement.dataset.theme = resolved;
+        document.documentElement.dataset.themePreference = preference;
+        document.documentElement.style.colorScheme = resolved;
+        const themeColor = document.querySelector('meta[name="theme-color"]');
+        if (themeColor) {
+          themeColor.setAttribute(
+            "content",
+            resolved === "dark" ? "#070c12" : "#edf1f5",
+          );
+        }
+      })();
+    </script>
   </head>
   <body>
     <div class="site-shell">
       <SkipLink />
-      <SiteNav profile={profile} />
+      <SiteNav profile={profile} overlay={overlayNav} />
       <main id="main" class="site-main">
         <slot />
       </main>

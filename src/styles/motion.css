@@ -1,67 +1,120 @@
-.reveal-up {
-  opacity: 0;
-  transform: translateY(0.8rem);
-  animation: rise 900ms var(--ease-out) forwards;
+/* Motion is opt-in: every element renders in its final state by default and
+   only animates when the visitor has not asked for reduced motion. */
+
+.wordmark-line {
+  display: block;
+  overflow: hidden;
+  padding-block-end: 0.14em;
+  margin-block-end: -0.14em;
 }
 
-.reveal-up-delay-1 {
-  animation-delay: 120ms;
+.wordmark-word {
+  display: block;
 }
 
-.reveal-up-delay-2 {
-  animation-delay: 220ms;
-}
-
-.reveal-up-delay-3 {
-  animation-delay: 320ms;
-}
-
-@keyframes rise {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.hero-signal {
+  inline-size: clamp(3rem, 7vw, 5rem);
+  block-size: 2px;
+  background: var(--signal-glow);
+  transform-origin: left center;
 }
 
 .hero-media-motion {
-  animation: kenburns 28s var(--ease-out) alternate infinite;
-  transform-origin: center;
+  transform: scale(1.04);
+  transform-origin: 58% 42%;
 }
 
-@keyframes kenburns {
-  from {
-    transform: scale(1.02);
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(1.15rem);
+    animation: reveal-rise var(--dur-cinematic) var(--ease-out) var(--reveal-delay, 0ms) forwards;
   }
-  to {
-    transform: scale(1.08);
+
+  .wordmark-word {
+    transform: translateY(106%);
+    animation: word-rise 1150ms var(--ease-out) forwards;
+    animation-delay: calc(var(--wm-i, 0) * 110ms + 100ms);
   }
-}
 
-.scroll-reveal {
-  transform: translateY(0.75rem);
-  transition: transform 700ms var(--ease-out);
-}
-
-.scroll-reveal.is-visible {
-  transform: translateY(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal-up,
-  .reveal-up-delay-1,
-  .reveal-up-delay-2,
-  .reveal-up-delay-3 {
-    opacity: 1;
-    transform: none;
-    animation: none;
+  .hero-signal {
+    transform: scaleX(0);
+    animation: rule-draw 900ms var(--ease-out) 80ms forwards;
   }
 
   .hero-media-motion {
-    animation: none;
+    animation: hero-drift 42s var(--ease-in-out) alternate infinite;
   }
 
-  .scroll-reveal {
+  .hero-grade,
+  .hero-grid {
+    animation: atmosphere-in 1600ms var(--ease-out) both;
+  }
+
+  /* Transform only — opacity would fail contrast checks on below-fold items. */
+  .js .scroll-reveal {
+    transform: translateY(1.4rem);
+    transition: transform var(--dur-slow) var(--ease-out);
+    transition-delay: calc(var(--reveal-i, 0) * 70ms);
+  }
+
+  .js .scroll-reveal.is-visible {
     transform: none;
-    transition: none;
+  }
+}
+
+@keyframes reveal-rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes word-rise {
+  to {
+    transform: none;
+  }
+}
+
+@keyframes rule-draw {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes hero-drift {
+  from {
+    transform: scale(1.04) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.13) translate3d(-1.4%, -1.1%, 0);
+  }
+}
+
+@keyframes atmosphere-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: var(--atmosphere-opacity, 1);
+  }
+}
+
+/* Cross-document page transitions: a single soft cut, no theatrics. */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 240ms;
+  animation-timing-function: var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
   }
 }

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHeader from "../../components/layout/PageHeader.astro";
 import WritingList from "../../components/writing/WritingList.astro";
 ---
 
@@ -8,11 +9,14 @@ import WritingList from "../../components/writing/WritingList.astro";
   description="Fixture for empty writing state."
   noindex={true}
 >
-  <section class="page-wrap page-section stack-lg">
-    <header class="stack-md">
-      <h1 class="section-title">Writing</h1>
-      <p class="lede">Fixture route used to validate the empty state.</p>
-    </header>
-    <WritingList items={[]} />
-  </section>
+  <div class="page-wrap">
+    <PageHeader
+      eyebrow="Notes"
+      title="Writing"
+      lede="Fixture route used to validate the empty state."
+    />
+    <section class="page-section" aria-label="Published writing">
+      <WritingList items={[]} />
+    </section>
+  </div>
 </BaseLayout>

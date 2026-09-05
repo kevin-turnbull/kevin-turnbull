@@ -10,14 +10,16 @@ interface Props {
     abstract: string;
   }[];
 }
+
 const { items } = Astro.props;
 ---
 
 {
   items.length === 0 ? (
-    <div class="empty-state stack-md">
-      <h2 class="font-display" style="font-size:1.8rem;">Notes forthcoming</h2>
-      <p class="muted">
+    <div class="empty-state">
+      <p class="eyebrow">In progress</p>
+      <h2 class="section-title">Notes forthcoming</h2>
+      <p class="lede">
         Essays and talks will land here. Meanwhile, explore selected work or start a conversation.
       </p>
       <div class="cta-group">
@@ -31,15 +33,19 @@ const { items } = Astro.props;
     </div>
   ) : (
     <ul class="writing-list">
-      {items.map((item) => (
+      {items.map((item, index) => (
         <li class="writing-item">
-          <a href={`/writing/${item.slug}`}>
+          <a class="entry-link" href={`/writing/${item.slug}`}>
+            <span class="entry-index" aria-hidden="true">
+              {String(index + 1).padStart(2, "0")}
+            </span>
             <div class="meta">
               <span>{item.type}</span>
               <span>{formatContentDate(item.date)}</span>
             </div>
-            <h2>{item.title}</h2>
-            <p class="muted">{item.abstract}</p>
+            <h2 class="entry-title">{item.title}</h2>
+            <p class="entry-summary">{item.abstract}</p>
+            <span class="entry-arrow" aria-hidden="true" />
           </a>
         </li>
       ))}

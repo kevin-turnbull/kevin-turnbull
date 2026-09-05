@@ -21,15 +21,15 @@ const hasImage = Boolean(entry.data.heroImage);
   path={`/work/${entry.id}`}
   eyebrow={`${entry.data.organization} · ${entry.data.timeframe} · ${entry.data.role}`}
 >
-  {
-    hasImage ? (
-      <img src={entry.data.heroImage} alt="" width="1200" height="675" />
-    ) : (
-      <p class="muted" style="border-left: 3px solid var(--color-copper); padding-left: 1rem;">
-        Visual forthcoming — the architecture narrative stands on its own.
-      </p>
-    )
-  }
+  <Fragment slot="media">
+    {
+      hasImage ? (
+        <img class="framed-image" src={entry.data.heroImage} alt="" width="1200" height="675" />
+      ) : (
+        <p class="media-note">Visual forthcoming — the architecture narrative stands on its own.</p>
+      )
+    }
+  </Fragment>
   <Content />
-  <p><a href="/work">← Back to selected work</a></p>
+  <p class="prose-back"><a href="/work">← Back to selected work</a></p>
 </ProseLayout>
